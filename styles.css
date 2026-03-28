@@ -294,6 +294,77 @@ body {
   padding: 0 0.25rem;
 }
 
+.card__qr {
+  margin: 1.35rem 0 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.card__qr-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card__qr-heading {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.9;
+}
+
+.card__qr-hint {
+  margin: 0.35rem 0 0.65rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.card__qr-frame {
+  display: inline-block;
+  padding: 0.6rem;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  line-height: 0;
+}
+
+.card__qr-target img,
+.card__qr-target canvas {
+  display: block;
+  width: 132px;
+  height: 132px;
+  border-radius: 4px;
+}
+
+.card__qr-link {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-size: 0.72rem;
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-all;
+  max-width: 100%;
+}
+
+.card__qr-link:hover {
+  text-decoration: underline;
+}
+
+.card__qr-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .card__contact {
   list-style: none;
   margin: 1.5rem 0 0;
@@ -301,6 +372,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
+  width: 100%;
+}
+
+button.contact-link {
+  appearance: none;
+  border: none;
+  font: inherit;
+  width: 100%;
+  cursor: pointer;
 }
 
 .contact-link {
@@ -315,6 +395,35 @@ body {
   font-weight: 500;
   border: 1px solid transparent;
   transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-link--action {
+  font-weight: 600;
+  border-color: rgba(124, 156, 255, 0.25);
+}
+
+[data-theme="light"] .contact-link--action {
+  border-color: rgba(61, 90, 254, 0.2);
+}
+
+.contact-link--save {
+  background: rgba(120, 200, 160, 0.18);
+  color: var(--text);
+  font-weight: 600;
+  border-color: rgba(120, 200, 160, 0.35);
+}
+
+.contact-link--save:hover {
+  border-color: rgba(120, 200, 160, 0.55);
+}
+
+[data-theme="light"] .contact-link--save {
+  background: rgba(46, 140, 100, 0.14);
+  border-color: rgba(46, 140, 100, 0.28);
+}
+
+[data-theme="light"] .contact-link--save:hover {
+  border-color: rgba(46, 140, 100, 0.45);
 }
 
 .contact-link:hover {
@@ -385,12 +494,43 @@ body {
   opacity: 0.75;
 }
 
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%) translateY(120%);
+  max-width: min(340px, calc(100vw - 2rem));
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--text);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.toast.toast--visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .character {
     animation: none;
   }
 
   .card {
+    transition: none;
+  }
+
+  .toast {
     transition: none;
   }
 }
